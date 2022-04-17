@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-native-image-picker": "^2.3.0",
+    "tflite-react-native": "^0.0.5"
+  }
+}

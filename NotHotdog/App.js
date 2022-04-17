@@ -1,112 +1,89 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, {Component} from 'react';
+import {View, Text, Image, StyleSheet} from 'react-native';
+import {Button} from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export default class App extends Component {
+  // selectGalleryImage() {
+  //   const options = {};
+  //   ImagePicker.launchImageLibrary(options, response => {
+  //     if (response.didCancel) {
+  //       console.log('User Cancelled Image');
+  //     } else if (response.error) {
+  //       console.log('Error');
+  //     } else if (response.customButton) {
+  //       console.log('User presssed custom button');
+  //     } else {
+  //     }
+  //   });
+  // }
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+  render() {
+    return (
+      <LinearGradient
+        colors={['#dd3e54', '#dd3e09']}
+        style={styles.linearGradient}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}> Not Hotdog</Text>
+          <Text style={styles.subtitle}> Seafood Startup</Text>
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+        <View style={styles.outputContainer}>
+          <Image
+            source={require('./assets/hotdog.png')}
+            style={styles.hotdogImage}></Image>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button
+            title={'Camera Roll'}
+            titleStyle={{fontSize: 20}}
+            containerStyle={{margin: 5}}
+            buttonStyle={styles.button}></Button>
+
+          <Button
+            title={'Take a Photo'}
+            titleStyle={{fontSize: 20}}
+            containerStyle={{margin: 5}}
+            buttonStyle={styles.button}></Button>
+        </View>
+      </LinearGradient>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  linearGradient: {
+    flex: 1,
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  titleContainer: {
+    marginTop: 70,
+    marginLeft: 40,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  title: {
+    fontSize: 40,
+    fontWeight: 'bold',
   },
-  highlight: {
-    fontWeight: '700',
+  subtitle: {
+    fontSize: 16,
+  },
+  outputContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonContainer: {
+    paddingBottom: 40,
+    alignItems: 'center',
+  },
+  button: {
+    width: 200,
+    height: 57,
+    backgroundColor: 'black',
+    borderRadius: 8,
+  },
+  hotdogImage: {
+    height: 250,
+    width: 250,
   },
 });
-
-export default App;
